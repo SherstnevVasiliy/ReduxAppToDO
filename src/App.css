@@ -1,0 +1,51 @@
+li {
+  list-style-type: none; /* Убираем маркеры */
+ }
+ ul {
+  margin-top: 5px; /* Отступ слева в браузере IE и Opera */
+  padding-left: 0; /* Отступ слева в браузере Firefox, Safari, Chrome */
+ }
+
+
+
+.container {
+  width: 600px;
+  margin: 0 auto;
+  text-align: -webkit-center;
+}
+
+.form {
+  display: flex;
+  justify-content: center;
+}
+
+.input-wrap{
+  flex: 5;
+}
+
+.input {
+  width: -webkit-fill-available;
+}
+
+.todo-item {
+  text-align: left;
+  cursor: pointer;
+  background-color:cadetblue;
+  margin-bottom: 2px;
+  padding: 3px;
+  border-radius: 3px;
+}
+
+.no-todo-item {
+  text-align: center;
+  color: brown;
+}
+
+.btn {
+  background-color: darkcyan;
+  color: white;
+  padding: 2px;
+  margin: 0;
+  border-radius: 3px;
+  border: solid 1px gray;
+}
