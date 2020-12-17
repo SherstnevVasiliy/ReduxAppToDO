@@ -1,6 +1,4 @@
-const initialState = {
-    todos: [],
-}
+import initialState from '../store/initialState'
 
 const reducer = (state = initialState, action) => {
     let {todos} = state;
