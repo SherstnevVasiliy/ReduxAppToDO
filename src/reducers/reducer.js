@@ -1,37 +1,41 @@
 import initialState from '../store/initialState'
 
 const reducer = (state = initialState, action) => {
-    let {todos} = state;
     switch (action.type) {
         case 'ADD_TODO':
-            console.log('add task work');//РЕДЮСЕР СРАБОТАЛ
-            console.log('prewtodos',state);// НАЧАЛЬНОЕ СОСТОЯНИЕ
+            const { todos } = state;
+            let newTodos = todos.map(item => item)
+            newTodos.push(action.payload)
+            return {
+                ...state,
+                todos: newTodos
+                };
 
-            todos.push({
-                id: todos.length + 1,
-                taskName: action.payload,
-                done: false
-            })
-            console.log('newtodos', state)//НОВОЕ СОСТОЯНИЕ
-            // **************** ГДЕ ТО ТУТ ДОЛЖЕН БЫТЬ РЕТЕРН!!!!!! НО РАБОТАЕТ БЛЯТЬ БЕЗ НЕГО А С НИМ НЕТ
-            
-            // ******** пробовал заменить удаление за изменение компонента нихера не сработало
-        // case 'EDIT_TODO':
-        //     todos.map((todo => todo.id === action.payload?
-        //         (todo.done= !todo.done) :
-        //         (false)
-        //     ))
-                        
         case 'DELETE_TODO':
             return {
                 ...state,
                 todos: state.todos.filter(todo => todo.id !== action.payload)
                 };
+              
+        case 'EDIT_TODO':
+            return {
+                ...state,
+                todos: state.todos.map(todo => {
+                    if (todo.id === action.payload) {
+                      return { ...todo,
+                        done: !todo.done
+                      }
+                    } else {
+                      return todo;
+                    }
+                })
+            }
 
         default:
             return state;
         
     }
+    
 }
 
 export default reducer;

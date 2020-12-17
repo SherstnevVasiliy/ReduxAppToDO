@@ -7,7 +7,7 @@ function App() {
   return (
     <div className = 'container'> 
       <p>
-        ToDo List
+        СПИСОК ЗАДАЧ
       </p>
 
       <InputForm />

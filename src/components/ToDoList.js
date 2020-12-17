@@ -1,24 +1,29 @@
 import {useDispatch, useSelector} from 'react-redux'
-import {editTask} from '../reducers/action/actionList'
-
+import {deleteTODO} from '../reducers/action/actionList'
+import {editTODO} from '../reducers/action/actionEditList'
 
 const ToDoList = () => {
   const dispatch = useDispatch();
-  const todos  = useSelector(state => state.todos); // НЕВЕДОМАЯ ХУЙНЯ
-  const handleClick = id => dispatch(editTask(id))
-
-  console.log('==================')
-  console.log(todos)
-  console.log('==================')
+  const todos  = useSelector(state => state.todos);
+  const handleClick = id => dispatch(deleteTODO(id));
+  const handleClickEdit = id => dispatch(editTODO(id));
 
   if (!todos || !todos.length) {
-    return <p className = 'todo-item no-todo-item'>no todos</p>
+    return <p className = 'todo-item no-todo-item'>нет текущих задач</p>
   }
   return (
     <ul>
-      {todos.map(todo => <li className = {todo.done ? undefined :'todo-item'} onClick = {() => handleClick(todo.id)} key = {todo.id}>{todo.taskName}</li>)}
+      {todos.map(todo => 
+      <div className = "todo-item-wrap" key = {todo.id}>
+      <li className = {todo.done ? 'todo-item-done' :'todo-item'} onClick = {() => handleClickEdit(todo.id)}>{todo.taskName}</li>
+      <span className='btn-delete' onClick = {() => handleClick(todo.id)}>X</span>
+      </div>
+      )
+      }
+
     </ul>
   )
 };
+
 
 export default ToDoList
