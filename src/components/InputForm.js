@@ -1,19 +1,14 @@
-import {useDispatch, useSelector} from 'react-redux'
+import {useDispatch} from 'react-redux'
+import {addTask} from '../reducers/action/actionInput'
+
 
 const InputForm = () => {
     const dispatch = useDispatch();
-    const todos  = useSelector(state => state.todos); 
     const formHandler = (event) => {
         event.preventDefault();
         let data = event.target.elements;
         if (data.taskName.value !== '') {
-        dispatch({
-          type: 'ADD_TODO',
-          payload: {
-            label: data.taskName.value,
-            id: todos.length + 1,
-          }
-        })
+        dispatch(addTask(data.taskName.value));
         data.taskName.value = '';
     }
     }
